@@ -10,7 +10,7 @@ RUN npm install -g http-server
 
 RUN npm install newman --global
 
-RUN pwd
+RUN ls
 
 COPY . .
 RUN echo 'hello' > hello.html
