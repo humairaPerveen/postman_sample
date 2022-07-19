@@ -4,8 +4,8 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN unzip awscliv2.zip
 RUN ./aws/install
 # set up
-AWS link --region="us-east-1"
+AWS link --region="ca-central-1"
 # Attach desired permissions to the user
-RUN aws iam attach-user-policy --policy-arn arn:aws:iam:ACCOUNT-ID:aws:policy/AdministratorAccess --user-name Alice
+RUN aws iam attach-user-policy --policy-arn 676547395465 --user-name Humaira
 # Check caller identity
 RUN aws sts get-caller-identity
