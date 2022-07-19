@@ -10,7 +10,7 @@ RUN npm install -g http-server
 
 RUN npm install newman --global
 
-RUN ls
+RUN newman run ~/postman_sample/API_Automated_TestCases.postman_collection.json -e ~/postman_sample/Automation_Staging_Hypercare.postman_environment.json
 
 COPY . .
 RUN echo 'hello' > hello.html
