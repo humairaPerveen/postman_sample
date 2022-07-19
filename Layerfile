@@ -1,11 +1,19 @@
-# install AWS CLI
-RUN apt-get update && apt-get install unzip
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN ./aws/install
-# set up
-AWS link --region="ca-central-1"
-# Attach desired permissions to the user
-RUN aws iam attach-user-policy --policy-arn 676547395465 --user-name Humaira
-# Check caller identity
-RUN aws sts get-caller-identity
+#This is an example webapp.io configuration for NodeJS
+FROM vm/ubuntu:18.04
+# To note: Layerfiles create VMs, *not* containers!
+
+# Install node
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+    apt install nodejs && \
+    rm -f /etc/apt/sources.list.d/nodesource.list
+RUN npm install -g http-server
+
+RUN npm install newman --global
+
+RUN newman run API_Automated_TestCases.postman_collection.json -e Automation_Staging_Hypercare.postman_environment.json
+
+COPY . .
+RUN echo 'hello' > hello.html
+
+RUN BACKGROUND http-server -p 8000
+EXPOSE WEBSITE http://localhost:8000
