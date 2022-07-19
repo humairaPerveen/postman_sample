@@ -1,0 +1,9 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - npm install newman --global
+  build:
+    commands:
+      - newman run API_Automated_TestCases.postman_collection.json -e Automation_Staging_Hypercare.postman_environment.json
