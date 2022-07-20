@@ -13,7 +13,7 @@ RUN npm install newman --global
 
 COPY . .
 
-RUN ls
+RUN newman run API_Automated_TestCases.postman_collection.json -e Automation_Staging_Hypercare.postman_environment.json
 RUN echo 'hello' > hello.html
 
 RUN BACKGROUND http-server -p 8000
